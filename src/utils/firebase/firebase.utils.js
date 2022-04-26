@@ -22,7 +22,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+console.log(app);
 const googleprovider = new GoogleAuthProvider();
 googleprovider.setCustomParameters({
     prompt: "select_account"
@@ -52,7 +52,7 @@ export const getCategoriesAndDocuments = async () => {
     const q = query(collectionRef);
 
     const querySnapshot = await getDocs(q);
-    console.log(querySnapshot);
+   /*  console.log(querySnapshot); */
     const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
         const {title, items} = docSnapshot.data();
         acc[title.toLowerCase()] = items;
@@ -66,10 +66,10 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
     if (!userAuth) return;
     const userDocRef = doc(db, 'users', userAuth.uid);
 
-    console.log(userDocRef);
+    /* console.log(userDocRef); */
 
     const userSnapshot = await getDoc(userDocRef);
-    console.log(userSnapshot);
+    /* console.log(userSnapshot); */
 
     if (!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
